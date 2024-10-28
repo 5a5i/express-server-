@@ -1,8 +1,14 @@
 const express = require('express');
+const cors = require('cors');
 const fetch = (...args) => import('node-fetch').then(({ default: fetch }) => fetch(...args));
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Allow CORS for your GitHub Pages domain
+app.use(cors({
+  origin: 'https://5a5i.github.io'
+}));
 
 app.get('/proxy/track', async (req, res) => {
   try {
